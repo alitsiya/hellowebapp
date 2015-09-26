@@ -1,7 +1,7 @@
 from collection.backends import MyRegistrationView
 from django.conf.urls import patterns, include, url 
 from django.contrib import admin
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, RedirectView
 
 # add to our import statements at the top
 from django.contrib.auth.views import ( 
@@ -18,9 +18,13 @@ urlpatterns = patterns('',
     url(r'^contact/$',
         TemplateView.as_view(template_name='contact.html'),
         name='contact'),
+    url(r'^things/$', RedirectView.as_view(pattern_name='browse')),
     url(r'^things/(?P<slug>[-\w]+)/$', 'collection.views.thing_detail', name='thing_detail'),
     # new line we're adding!
     url(r'^things/(?P<slug>[-\w]+)/edit/$', 'collection.views.edit_thing', name='edit_thing'),
+    url(r'^browse/$', RedirectView.as_view(pattern_name='browse')),
+    url(r'^browse/name/$', 'collection.views.browse_by_name', name='browse'), 
+    url(r'^browse/name/(?P<initial>[-\w]+)/$', 'collection.views.browse_by_name', name='browse_by_name'),
     # the new password reset URLs 
     url(r'^accounts/password/reset/$', password_reset, {'template_name': 'registration/password_reset_form.html'}, name="password_reset"),
     url(r'^accounts/password/reset/done/$', password_reset_done, {'template_name': 'registration/password_reset_done.html'}, name="password_reset_done"),
