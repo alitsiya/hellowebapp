@@ -1,7 +1,7 @@
 {% extends 'layouts/base.html' %}
-{% load humanize %}
 {% block title %}{{ thing.name }} - {{ block.super }}{% endblock %} 
 {% block content %}
     <h2>{{ thing.name }}</h2>
     <p>{{ thing.description }}</p>
+    <a href="{% url 'edit_thing' slug=thing.slug %}">Edit me!</a>
 {% endblock %}
