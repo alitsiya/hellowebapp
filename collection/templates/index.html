@@ -1,10 +1,8 @@
 {% extends 'layouts/base.html' %}
-{% load humanize %}
 {% block title %}Homepage - {{ block.super }}{% endblock %} 
 {% block content %}
-    <h1>Hello World!</h1>
-    <p>I am a basic website.</p>
-    <!-- here’s the variable we are passing in -->
-    <p>There are {{ number|apnumber }} dogs!</p>
-    <p>This is my name: {{ thing|truncatewords:1 }}</p>
+{% for thing in things %}
+    <h2><a href="{% url 'thing_detail' slug=thing.slug %}">{{ thing.name }}</a></h2>
+    <p>{{ thing.description }}</p>
+    {% endfor %}
 {% endblock %}
