@@ -105,6 +105,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles' 
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
+
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' 
 DEFAULT_FROM_EMAIL = 'testing@example.com'
